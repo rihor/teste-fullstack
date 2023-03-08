@@ -22,11 +22,13 @@ services:
       - db
 
   db:
-    image: mysql:8.0
+    image: postgres:15
     restart: always
-    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 25432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql
     environment:
-      MYSQL_DATABASE: uhuu_delivery
-      MYSQL_USER: myuser
-      MYSQL_ROOT_PASSWORD: mypass
-      MYSQL_PASSWORD: mypass
+      POSTGRES_USER: uhuu
+      POSTGRES_PASS: uhuu
+      POSTGRES_DBNAME: delivery
