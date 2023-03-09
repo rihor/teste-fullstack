@@ -1,15 +1,17 @@
-import { HTMLProps, ReactNode } from "react"
+import { forwardRef, ForwardRefRenderFunction, HTMLProps, ReactNode } from "react"
 import styles from "./forms.module.scss";
 
 interface Props extends HTMLProps<HTMLInputElement> {
   rightContent?: ReactNode;
 }
 
-export function Input({ rightContent, ...props }: Props) {
+const InputComponent: ForwardRefRenderFunction<HTMLInputElement, Props> = ({ rightContent, ...props }, ref) => {
   return (
     <div className={styles.input}>
-      <input {...props} />
+      <input ref={ref} {...props} />
       {rightContent}
     </div>
   )
 }
+
+export const Input = forwardRef(InputComponent);
