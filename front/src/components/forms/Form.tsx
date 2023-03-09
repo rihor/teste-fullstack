@@ -79,6 +79,7 @@ export function Form(props: Props) {
     setValue("street", geolocation.address.road);
     setValue("adjunct", geolocation.address.postcode); // Incorrect
     setValue("district", geolocation.address.state_district); // Incorrect
+    setValue("houseNumber", "A"); // Incorrect
     setValue("latitude", Number(geolocation.lat));
     setValue("longitude", Number(geolocation.lon));
   }
