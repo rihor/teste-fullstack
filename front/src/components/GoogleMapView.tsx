@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"
+import { GoogleMap, LoadScript, LoadScriptProps, Marker } from "@react-google-maps/api"
 import mapStyles from "../mapStyles.json";
 import { useUserGeolocation } from "../hooks/useUserGeolocation";
 import { Delivery } from "../services/deliveries/interfaces";
@@ -13,11 +13,18 @@ interface Props {
 
 const googleMapKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 
+const loadScriptProps: Partial<LoadScriptProps> = {
+  libraries: ["visualization"]
+}
+
 export function GoogleMapView(props: Props) {
   const { geolocation } = useUserGeolocation({ lat: 0, lng: 0 }, []);
 
   return (
-    <LoadScript googleMapsApiKey={googleMapKey} libraries={["visualization"]}>
+    <LoadScript
+      googleMapsApiKey={googleMapKey}
+      libraries={loadScriptProps.libraries}
+    >
       <GoogleMap
         mapContainerStyle={{
           height: "100%",
