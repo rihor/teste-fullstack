@@ -4,7 +4,9 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Delivery } from "../services/interfaces";
+import classnames from "classnames";
+import { Delivery } from "../services/deliveries/interfaces";
+import styles from './table.module.scss';
 
 interface Props {
   deliveries: Delivery[]
@@ -40,7 +42,7 @@ export function Table(props: Props) {
   });
 
   return (
-    <div className={props.className}>
+    <div className={classnames(props.className, styles.table)}>
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

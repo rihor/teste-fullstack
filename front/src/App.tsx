@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import { Form } from './components/forms/Form'
 import { GoogleMapView } from './components/GoogleMapView'
 import { Table } from './components/Table'
-import { getDeliveries } from './services/deliveries'
+import { getDeliveries } from './services/deliveries/deliveries'
 import './styles.scss';
 
 function App() {

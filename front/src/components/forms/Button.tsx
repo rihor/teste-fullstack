@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
+import styles from "./forms.module.scss";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   children?: ReactNode;
@@ -7,8 +8,8 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorEleme
 
 export function Button({ children, type, href, ...props }: Props) {
   if (href) {
-    return <a {...props} href={href} >{children}</a>
+    return <a {...props} href={href} className={styles.button}>{children}</a>
   }
 
-  return <button type="button" {...props} >{children}</button>
+  return <button type="button" {...props} className={styles.button}>{children}</button>
 }
