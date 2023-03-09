@@ -1,57 +1,57 @@
-import { ReactNode } from "react";
-import { GoogleMap, LoadScript, LoadScriptProps, Marker } from "@react-google-maps/api"
+import { ReactNode, useCallback } from "react";
+import { GoogleMap, MarkerF, LoadScriptProps, useJsApiLoader, InfoWindowF } from "@react-google-maps/api"
 import mapStyles from "../mapStyles.json";
 import { useUserGeolocation } from "../hooks/useUserGeolocation";
 import { Delivery } from "../services/deliveries/interfaces";
+import { Marker } from "./Marker";
 
 interface Props {
   deliveries: Delivery[];
-  onSelectDelivery?: (delivery: Delivery) => void;
   children?: ReactNode;
   className?: string;
 }
 
 const googleMapKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 
-const loadScriptProps: Partial<LoadScriptProps> = {
-  libraries: ["visualization"]
-}
-
 export function GoogleMapView(props: Props) {
   const { geolocation } = useUserGeolocation({ lat: 0, lng: 0 }, []);
+  const google = window.google;
+
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: googleMapKey,
+  });
+
+  const onLoad = useCallback((map: google.maps.Map) => {
+    map.setZoom(14)
+    map.setCenter(geolocation)
+  }, [geolocation, google])
+
+  const onUnmount = useCallback((map: google.maps.Map) => {
+    map.unbindAll();
+  }, [])
+
+  if (!isLoaded) {
+    return null;
+  }
 
   return (
-    <LoadScript
-      googleMapsApiKey={googleMapKey}
-      libraries={loadScriptProps.libraries}
+    <GoogleMap
+      mapContainerStyle={{
+        height: "100%",
+        width: "100%",
+      }}
+      zoom={14}
+      center={geolocation}
+      options={{ styles: mapStyles }}
+      mapContainerClassName={props.className}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
     >
-      <GoogleMap
-        mapContainerStyle={{
-          height: "100%",
-          width: "100%",
-        }}
-        zoom={14}
-        center={geolocation}
-        options={{ styles: mapStyles }}
-        mapContainerClassName={props.className}
-      >
-        {props.deliveries?.length &&
-          props.deliveries.map((delivery) => (
-            <Marker
-              key={delivery.id}
-              position={{
-                lat: Number(delivery.latitude),
-                lng: Number(delivery.longitude),
-              }}
-              onClick={() => {
-                if (props.onSelectDelivery) {
-                  props.onSelectDelivery(delivery)
-                }
-              }}
-            />
-          ))}
-        {props.children}
-      </GoogleMap>
-    </LoadScript>
+      {props.deliveries.map((delivery) => (
+        <Marker delivery={delivery} />
+      ))}
+      {props.children}
+    </GoogleMap>
   )
 }

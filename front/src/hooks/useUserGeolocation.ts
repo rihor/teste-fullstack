@@ -14,7 +14,7 @@ export function useUserGeolocation(
         lat: position.coords.latitude,
         lng: position.coords.longitude
       })
-    })
+    }, null, { enableHighAccuracy: true })
   }, deps);
 
   return { geolocation }
