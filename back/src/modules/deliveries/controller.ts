@@ -30,6 +30,7 @@ export class DeliveriesController {
   ) {}
 
   @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
   async create(
     @Body() body: CreateDeliveryInput,
   ): Promise<CreateDeliveryOutput> {
