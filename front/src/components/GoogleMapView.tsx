@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { GoogleMap, LoadScript, Marker, GoogleMapProps } from "@react-google-maps/api"
 import { Delivery } from "../services/interfaces"
 import mapStyles from "../mapStyles.json";
+import { useUserGeolocation } from "../hooks/useUserGeolocation";
 
 interface Props {
   deliveries: Delivery[];
@@ -13,16 +14,7 @@ interface Props {
 const googleMapKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 
 export function GoogleMapView(props: Props) {
-  const [userGeolocation, setUserGeolocation] = useState({ lat: 0, lng: 0 });
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setUserGeolocation({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      })
-    })
-  }, []);
+  const { geolocation } = useUserGeolocation({ lat: 0, lng: 0 }, []);
 
   return (
     <LoadScript googleMapsApiKey={googleMapKey} libraries={["visualization"]}>
@@ -32,7 +24,7 @@ export function GoogleMapView(props: Props) {
           width: "100%",
         }}
         zoom={14}
-        center={userGeolocation}
+        center={geolocation}
         options={{ styles: mapStyles }}
         mapContainerClassName={props.className}
       >

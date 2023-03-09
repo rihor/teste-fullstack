@@ -8,11 +8,13 @@ import './styles.scss';
 function App() {
   const { data, error } = useQuery('getDeliveries', () => getDeliveries())
 
+  let deliveries = data?.data
+
   return (
     <div className="app_wrapper">
       <Form className="form" />
 
-      <GoogleMapView deliveries={[]} className="map" />
+      <GoogleMapView deliveries={deliveries || []} className="map" />
 
       {data?.data && <Table deliveries={data.data} className="table" />}
     </div>
