@@ -1,8 +1,8 @@
-import { ReactNode, useEffect, useState } from "react";
-import { GoogleMap, LoadScript, Marker, GoogleMapProps } from "@react-google-maps/api"
-import { Delivery } from "../services/interfaces"
+import { ReactNode } from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"
 import mapStyles from "../mapStyles.json";
 import { useUserGeolocation } from "../hooks/useUserGeolocation";
+import { Delivery } from "../services/deliveries/interfaces";
 
 interface Props {
   deliveries: Delivery[];

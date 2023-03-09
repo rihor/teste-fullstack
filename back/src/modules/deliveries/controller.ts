@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Post,
   Query,
@@ -13,6 +14,7 @@ import {
   CreateDeliveryInput,
   CreateDeliveryOutput,
 } from './use-cases/create-delivery/interfaces';
+import { DeleteAllService } from './use-cases/delete-all/delete-all.service';
 import { GetDeliveriesService } from './use-cases/get-deliveries/get-deliveries.service';
 import {
   GetDeliveriesInput,
@@ -24,6 +26,7 @@ export class DeliveriesController {
   constructor(
     private readonly createDelivery: CreateDeliveryService,
     private readonly getDeliveries: GetDeliveriesService,
+    private readonly deleteAll: DeleteAllService,
   ) {}
 
   @Post()
@@ -37,5 +40,10 @@ export class DeliveriesController {
   @UsePipes(new ValidationPipe({ transform: true }))
   async get(@Query() query: GetDeliveriesInput): Promise<GetDeliveriesOutput> {
     return this.getDeliveries.execute(query);
+  }
+
+  @Delete()
+  async delete(): Promise<void> {
+    return this.deleteAll.execute();
   }
 }

@@ -3,9 +3,8 @@ import classNames from "classnames";
 
 import { Button } from "./Button";
 import { Input } from "./Input";
-import { useDebounceInput } from "../../hooks/useDebounceInput";
-import { searchGeolocation } from "../../services/geolocation";
 import styles from "./forms.module.scss";
+import { deliveriesService } from "../../services/deliveries/deliveries";
 
 interface Props {
   className?: string;
@@ -29,6 +28,10 @@ export function Form(props: Props) {
 
   function onSubmit(data: unknown) {
     // TODO: Handle submit
+  }
+
+  async function resetDb() {
+    await deliveriesService.resetDb();
   }
 
   return (
@@ -59,7 +62,7 @@ export function Form(props: Props) {
         <Button type="submit" data-design="confirm">cadastrar cliente</Button>
       </div>
       <div className={styles.reset}>
-        <Button data-design="reset">resetar cadastro</Button>
+        <Button data-design="reset" onClick={resetDb}>resetar cadastro</Button>
       </div>
     </form>
   )
