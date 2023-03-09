@@ -58,6 +58,10 @@ export function Form(props: Props) {
       adjunct: data.adjunct,
       houseNumber: data.houseNumber,
     });
+  }, {
+    onSuccess: () => {
+      props.onCreateDelivery()
+    }
   });
 
   async function searchPlace() {
