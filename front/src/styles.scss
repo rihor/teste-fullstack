@@ -33,6 +33,7 @@ button:focus-visible {
 
 .app_wrapper {
   max-width: 1400px;
+  min-height: 100vh;
   margin-inline: auto;
   display: grid;
   grid-template-columns: 2fr 3.5fr;

@@ -4,6 +4,7 @@ import styles from "./forms.module.scss";
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   children?: ReactNode;
   href?: string;
+  type?: 'submit' | 'reset' | 'button' | undefined;
 }
 
 export function Button({ children, type, href, ...props }: Props) {
@@ -11,5 +12,5 @@ export function Button({ children, type, href, ...props }: Props) {
     return <a {...props} href={href} className={styles.button}>{children}</a>
   }
 
-  return <button type="button" {...props} className={styles.button}>{children}</button>
+  return <button {...props} type={type || 'button'} className={styles.button}>{children}</button>
 }

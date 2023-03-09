@@ -17,7 +17,8 @@ function initApi() {
   return axios.create({
     baseURL: "https://nominatim.openstreetmap.org",
     params: {
-      format: "json"
+      format: "json",
+      addressdetails: 1
     }
   });
 }

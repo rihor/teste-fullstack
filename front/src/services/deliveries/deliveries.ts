@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { GetDeliveriesResponse } from "./interfaces";
+import { CreateDeliveryInput, GetDeliveriesResponse } from "./interfaces";
 
 class DeliveriesService {
   private api: AxiosInstance;
@@ -26,8 +26,8 @@ class DeliveriesService {
     return response.data;
   }
 
-  async createDelivery() {
-    const response = await this.api.post("/deliveries");
+  async createDelivery(input: CreateDeliveryInput) {
+    const response = await this.api.post("/deliveries", input);
 
     return response.data;
   }
