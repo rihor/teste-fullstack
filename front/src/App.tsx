@@ -6,13 +6,13 @@ import { deliveriesService } from './services/deliveries/deliveries'
 import './styles.scss';
 
 function App() {
-  const { data, error } = useQuery('getDeliveries', () => deliveriesService.getDeliveries())
+  const { data, error, refetch } = useQuery('getDeliveries', () => deliveriesService.getDeliveries())
 
   let deliveries = data?.data
 
   return (
     <div className="app_wrapper">
-      <Form className="form" />
+      <Form className="form" onCreateDelivery={() => refetch()} onResetDeliveries={() => refetch()} />
 
       <GoogleMapView deliveries={deliveries || []} className="map" />
 

@@ -12,6 +12,8 @@ import styles from "./forms.module.scss";
 
 interface Props {
   className?: string;
+  onCreateDelivery: () => void;
+  onResetDeliveries: () => void;
 }
 
 interface FormFields {
@@ -94,6 +96,7 @@ export function Form(props: Props) {
 
   async function resetDb() {
     await deliveriesService.resetDb();
+    props.onResetDeliveries();
   }
 
   return (
