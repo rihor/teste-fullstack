@@ -19,7 +19,7 @@ class DeliveriesService {
     const response = await this.api.get('/deliveries', {
       params: {
         page: page || 1,
-        perPage: perPage || 10,
+        perPage: perPage || 3,
       }
     });
 

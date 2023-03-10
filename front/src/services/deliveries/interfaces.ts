@@ -21,7 +21,7 @@ export interface Delivery {
 
 export interface GetDeliveriesResponse {
   total: number;
-  totalPage: number;
+  totalPages: number;
   currentPage: number;
   data: Delivery[];
 }

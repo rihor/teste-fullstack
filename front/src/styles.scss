@@ -31,19 +31,23 @@ button:focus-visible {
   outline-color: #fab925; // accessibility and keyboard navigation
 }
 
+#root {
+  height: 100%;
+  width: 100%;
+}
+
 .app_wrapper {
-  max-width: 1400px;
-  min-height: 100vh;
+  width: 1400px;
+  height: 100%;
   margin-inline: auto;
   display: grid;
   grid-template-columns: 2fr 3.5fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr auto;
   gap: 24px;
-  padding: 12px;
   grid-template-areas:
     "form map"
-    "form map"
     "form table";
+  padding: 12px;
 }
 
 .form {
@@ -56,4 +60,10 @@ button:focus-visible {
 
 .table {
   grid-area: table;
+}
+
+.paginate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
