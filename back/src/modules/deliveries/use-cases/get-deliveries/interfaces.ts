@@ -16,6 +16,8 @@ export interface GetDeliveriesOutput {
   total: number;
   currentPage: number;
   totalPages: number;
+  totalWeight: number;
+  averageWeight: number;
   data: Array<
     Delivery & {
       customer: Customer;

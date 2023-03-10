@@ -6,6 +6,7 @@ import { GoogleMapView } from './components/GoogleMapView'
 import { Table } from './components/Table'
 import { deliveriesService } from './services/deliveries/deliveries'
 import './styles.scss';
+import { formatDecimal } from './utils/number'
 
 function App() {
   const [page, setPage] = useState(1);
@@ -46,12 +47,14 @@ function App() {
 
       {data?.data && (
         <div className="table">
+          <span>Total de Clientes {data.total}; Peso Total: {formatDecimal(data.totalWeight)} kg; Ticket Médio*: {formatDecimal(data.averageWeight)}</span>
           <div className="paginate">
             <Button onClick={() => decreasePage()}>Voltar</Button>
             Página: {data.currentPage}
             <Button onClick={() => increasePage()}>Próxima</Button>
           </div>
           <Table deliveries={deliveries} />
+          <span>*Peso Total/Total de Clientes</span>
         </div>
       )}
     </div>

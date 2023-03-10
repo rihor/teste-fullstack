@@ -117,7 +117,7 @@ export function Form(props: Props) {
         <Input
           placeholder="Peso da Entrega"
           type="number"
-          step="0.1"
+          step="0.01"
           min="0"
           validationsError={errors}
           {...register("weight", { valueAsNumber: true })}

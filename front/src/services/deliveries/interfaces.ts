@@ -23,6 +23,8 @@ export interface GetDeliveriesResponse {
   total: number;
   totalPages: number;
   currentPage: number;
+  totalWeight: number;
+  averageWeight: number;
   data: Delivery[];
 }
 

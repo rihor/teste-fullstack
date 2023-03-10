@@ -60,6 +60,9 @@ button:focus-visible {
 
 .table {
   grid-area: table;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .paginate {

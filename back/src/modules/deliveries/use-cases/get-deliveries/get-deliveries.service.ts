@@ -20,16 +20,26 @@ export class GetDeliveriesService {
 
     const countPromise = this.prisma.delivery.count();
 
-    const [deliveries, total] = await Promise.all([
+    const totalWeightPromise = this.prisma.delivery.aggregate({
+      _sum: { weight: true },
+    });
+
+    const [deliveries, total, totalWeightAggregate] = await Promise.all([
       deliveriesPromise,
       countPromise,
+      totalWeightPromise,
     ]);
+
+    const totalWeight = totalWeightAggregate._sum.weight;
+    const averageWeight = totalWeight / total;
 
     return {
       data: deliveries,
       total,
       totalPages: Math.ceil(total / perPage),
       currentPage: page,
+      totalWeight,
+      averageWeight,
     };
   }
 
