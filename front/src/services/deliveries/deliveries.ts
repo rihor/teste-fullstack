@@ -7,7 +7,7 @@ class DeliveriesService {
   constructor() {
     let envUrl: string | undefined = import.meta.env.VITE_API_URL
     if (!envUrl || envUrl?.length === 0) {
-      throw new Error("front .env does not have a url.");
+      throw new Error("front .env does not have a api url.");
     }
 
     this.api = axios.create({
