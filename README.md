@@ -1,6 +1,30 @@
 <img src="https://i.imgur.com/rNOFiz0.jpeg" width="100%">
 
-# Introdução
+# Tutorial de como iniciar projeto
+
+O projeto foi dividido em 2, um back e um front, sendo o back Nest.js e o front em React.
+
+Para rodar o projeto é necessário ter Docker e Docker Compose em sua máquina.
+
+Antes de iniciar o projeto é necessário ter uma API key na google cloud para o uso de mapa.
+
+Assim que tiver uma API key clone o `.env.example` que estiver dentro da pasta front e da pasta raiz do projeto. Preencha o `VITE_GOOGLE_MAP_API_KEY` com a key do google maps.
+
+Agora basta rodar o comando `docker compose up --build`
+
+## Motivações
+
+Nest.js pela experiência que tenho com a biblioteca e porque é muito fácil criar uma aplicação escalonável.
+React com Vite porque é o jeito mais simples e rápido de fazer uma aplicação React simples.
+React-Query porque abstrai muito bem todo o ciclo de requisição http.
+Hookform porque é uma biblioteca de formulário com ótima documentação e simples de usar.
+Zod porque é a biblioteca de validação com mais tração atualmente, tendo uma comunidade promissora e uma integração com typescript excelente.
+React Table porque abstrai muito bem a lógica de tabelas HTML.
+Prisma porque por mais que ela adicione complexidade na fase de containerização ela é uma biblioteca que facilita muito a gestão de migrations e também tem uma ótima integração com typescript.
+
+---
+
+## Introdução ao desafio
 
 Olá! Obrigado pelo interesse em participar do nosso processo seletivo para dev fullstack na [Uhuu](https://uhuu.com/).
 
@@ -32,7 +56,7 @@ Siga o [layout abaixo](challenge.png) sugerido. Caso queira, ele pode ser melhor
 
 * [ ] O usuário deve ter um botão para resetar todos os cadastros
 
-## Estrutura proposta dos campos 
+## Estrutura proposta dos campos
 
 A estrutura proposta para armazenar os dados é a seguinte:
 
